@@ -6,11 +6,16 @@ package br.com.hospital.controller;
 import br.com.hospital.DAO.AtendimentoDAO;
 import br.com.hospital.model.Atendimento;
 import javafx.fxml.FXML;
-	import javafx.scene.control.Button;
-	import javafx.scene.control.PasswordField;
-	import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import java.io.IOException;
 
-	public class LoginController {
+import app.Main;
+import br.com.hospital.util.Rotas;
+import javafx.event.ActionEvent;
+
+	public class LoginController  extends Main{
 
 	    @FXML
 	    private PasswordField senha;
