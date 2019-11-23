@@ -1,14 +1,14 @@
 package br.com.hospital.controller;
 
 
-	package br.com.hospital.controller;
 
-	import javafx.fxml.FXML;
+	import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 	import javafx.scene.control.Button;
 	import javafx.scene.control.TableColumn;
 	import javafx.scene.control.TextField;
 
-	public class EnfermidadeControler {
+	public class EnfermidadeController {
 
 	    @FXML
 	    private TextField txtNome;

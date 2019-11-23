@@ -3,6 +3,7 @@ package br.com.hospital.controller;
 
 import br.com.hospital.DAO.AtendimentoDAO;
 import br.com.hospital.model.Atendimento;
+import br.com.hospital.model.Pessoa;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,7 +11,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import app.Main;
 import br.com.hospital.DAO.AtendimentoDAO;
 import br.com.hospital.model.Atendimento;
 import br.com.hospital.util.Rotas;
@@ -26,8 +26,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
-public class AtendimentoController extends Main implements Inicializar {
+public class AtendimentoController extends Main{
+
+	private static final Pessoa Altura = null;
 
 	@FXML
     private Button btnFinalizar;
@@ -67,6 +70,8 @@ public class AtendimentoController extends Main implements Inicializar {
 
     @FXML
     private TableColumn<?, ?> Data;
+    @FXML
+    private TableView<?> listaAtendimento;
 
     @FXML
     private Button btnEditar;
@@ -83,14 +88,15 @@ public class AtendimentoController extends Main implements Inicializar {
     @FXML
     void editar(ActionEvent event) {
     	try {
-			Atendimento a = listAtendimento.getSelectionModel().getSelectedItem();
+			
 
+			AtendimentoDAO a;
 			txtComentarioEnfermeiro.setText(a.getComentarioEnfermeiro());
-			txtPeso.setText("" + a.getPeso());
-			txtDoenca.setText(a.getDoenca());
-			txtAltura.setText("" + a.getAltura());
+			peso.setText("" + a.getPeso());
+			txtDoenca.setText("" +a.getDoenca());
+			altura.setText("" + a.getAltura());
 			txtComentarioMedico.setText(a.getComentarioMedico());
-			txtData.setValue(a.getData());
+			
 
 		} catch (Exception e) {
 
@@ -103,7 +109,7 @@ public class AtendimentoController extends Main implements Inicializar {
     @FXML
     void excluir(ActionEvent event) {
     	try {
-			Atendimento a = listAtendimento.getSelectionModel().getSelectedItem();
+			Atendimento a = (Atendimento) listaAtendimento.getSelectionModel().getSelectedItem();
 			System.out.println(a.getIdAtendimento());
 			AtendimentoDAO adao = new AtendimentoDAO();
 			adao.removeById(a.getIdAtendimento());
@@ -121,12 +127,12 @@ public class AtendimentoController extends Main implements Inicializar {
     void atualizar(ActionEvent event) {
     	try {
 			// somente para pegar ID
-			Atendimento getId = listAtendimento.getSelectionModel().getSelectedItem();
-			LocalDate data = txtData.getValue();
-			float peso = Float.parseFloat(txtPeso.getText());
+			Atendimento getId = (Atendimento) listaAtendimento.getSelectionModel().getSelectedItem();
+			LocalDate data = Data.getValue();
+			float peso = Float.parseFloat(Pessoa.getText());
 			String doenca = txtDoenca.getText();
 			String ComentarioEnfermeiro = txtComentarioEnfermeiro.getText();
-			float altura = Float.parseFloat(txtAltura.getText());
+			float altura = Float.parseFloat(Altura.getText());
 			String ComentarioMedico = txtComentarioMedico.getText();
 			Atendimento atend = new Atendimento();
 			AtendimentoDAO aDAO = new AtendimentoDAO();
@@ -136,7 +142,8 @@ public class AtendimentoController extends Main implements Inicializar {
 			atend.setDoenca(doenca);
 			atend.setComentarioEnfermeiro(ComentarioEnfermeiro);
 			atend.setAltura(altura);
-			atend.setComentarioMedico(ComentarioMedico);
+			atend.setComentario_Medico(ComentarioMedico);
+			Object a;
 			aDAO.update(a);
 			openpage(Rotas.ATENDIMENTO);
 		} catch (NumberFormatException e) {
@@ -168,8 +175,8 @@ public class AtendimentoController extends Main implements Inicializar {
     	atendimento.setPeso(pesos);
     	atendimento.setAltura(alturas);
     	atendimento.setDoenca(doencas);
-    	AtendimentoDAO atendimento = new AtendimentoDAO();
-    	atendimento.save(atendimento);
+    	AtendimentoDAO atendimento1 = new AtendimentoDAO();
+    	atendimento1.save(atendimento1);
     	try {
 			openpage(Rotas.DASH);
 		} catch (IOException e) {
@@ -195,20 +202,18 @@ public class AtendimentoController extends Main implements Inicializar {
 
 @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		tableCoEnf.setCellValueFactory(new PropertyValueFactory<>("comentarioEnfermeiro"));
-		tableCoMedi.setCellValueFactory(new PropertyValueFactory<>("comentarioMedico"));
-		tableDonca.setCellValueFactory(new PropertyValueFactory<>("doenca"));
-		tablePeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
-		tableAltura.setCellValueFactory(new PropertyValueFactory<>("altura"));
-		tableData.setCellValueFactory(new PropertyValueFactory<>("data"));
-
+	peso.setCellValueFactory(new PropertyValueFactory<>("peso"));
+		altura.setCellValueFactory(new PropertyValueFactory<>("altura"));
+		comentarioMedico.setCellValueFactory(new PropertyValueFactory<>("comentario_Medico"));
+		doenca.setCellValueFactory(new PropertyValueFactory<>("doenca"));
+		Data.setCellValueFactory(new PropertyValueFactory<>("data"));
 		AtendimentoDAO adao = new AtendimentoDAO();
 		List<Atendimento> atendimentos = adao.select();
 
 		System.out.println("Tamanho " + atendimentos.size());
 		ObservableList<Atendimento> obsA = FXCollections.observableArrayList(atendimentos);
 
-		listAtendimento.setItems(obsA);
+
 
 }
 }

@@ -85,4 +85,9 @@ public class Pessoa {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public static String getText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

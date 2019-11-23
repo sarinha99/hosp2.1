@@ -1,6 +1,7 @@
 package br.com.hospital.util;
 
 public class Rotas {
+	public static final String DASH = null;
 	public static String MEDICO = "/view/Medicos.fxml";
 	public static String ADMINISTRADOR = "/view/Administrador.fxml";
 	public static String ATENDENTE = "/view/Atendente.fxml";

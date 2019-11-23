@@ -11,9 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 
-import app.Main;
+import application.Main;
 import br.com.hospital.util.Rotas;
-import javafx.event.ActionEvent;
 
 	public class LoginController  extends Main{
 

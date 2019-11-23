@@ -1,12 +1,23 @@
 package br.com.hospital.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+import br.com.hospital.DAO.EntradaDAO;
+import br.com.hospital.model.Entrada;
+import br.com.hospital.util.Rotas;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-public class EntradaController {
+public class EntradaController{
+ 
 
     @FXML
     private Button btnVoltar;
@@ -43,33 +54,25 @@ public class EntradaController {
 
     @FXML
     private Button btnAtualizar;
+    @FXML
+    private TableView<?> listaEntrada1;
+
 
     @FXML
-    void atualizar(ActionEvent event) {
-    	Entrada getId = ListaEntrada.getSelectionModel().getSelectedItem();
-		LocalDate dataEntrada = dtDataEntrada.getValue();
-		LocalDate dataSaida = dtDataSaida.getValue();
-		String SituacaoPaciente = txtSituacaoPaciente.getText();
-		String statusEntrada = txtStatusEntrada.getText();
+    void atualizar(ActionEvent event) throws IOException {
+    
+		LocalDate dataEntrada = DataEntrada.getValue();
+		LocalDate dataSaida = dateSaida.getValue();
+		String StatusPaciente = txtStatusPaciente.getText();
+		
 		EntradaDAO enDAO = new EntradaDAO();
 		Entrada en = new Entrada();
-		en.setIdEntrada(getId.getIdEntrada());
+	
 		en.setDataEntrada(dataEntrada);
-		en.setDataDeSaida(dataSaida);
-		en.setSituacaoDePaciente(SituacaoPaciente);
-		en.setStatusDeEntrada(statusEntrada);
-		try {
-			enDAO.update(en);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			openpage(Rotas.ENTRADA);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+			
+		enDAO.update(en);
+		openpage(Rotas.ENTRADA);
 
 
     }
@@ -86,21 +89,21 @@ public class EntradaController {
 
     @FXML
     void editar(ActionEvent event) {
-    	Entrada e = ListaEntrada.getSelectionModel().getSelectedItem();
-		txtSituacaoPaciente.setText(e.getSituacaoDePaciente());
-		txtStatusEntrada.setText(e.getStatusDeEntrada());
-		dtDataEntrada.setValue(e.getDataEntrada());
-		dtDataSaida.setValue(e.getDataDeSaida());
+    	Entrada e = txtStatusPaciente.getSelection().getSelectedItem();
+		txtPaciente.setPromptText(e.getIdPaciente());
+		
+		DataEntrada.setValue(e.getDataEntrada());
+		dateSaida.setValue(e.getDataEntrada());
 
     }
 
     @FXML
     void excluir(ActionEvent event) {
     	try {
-			Entrada e = ListaEntrada.getSelectionModel().getSelectedItem();
-			System.out.println(e.getIdEntrada());
+			Entrada e = listaEntrada.getSelection().getSelectedItem();
+			System.out.println(e.getDataEntrada());
 			EntradaDAO edao = new EntradaDAO();
-			edao.removeById(e.getIdEntrada());
+			edao.removeById(e.getDataEntrada());
 			openpage(Rotas.ENTRADA);
 		} catch (SQLException e) {
 
@@ -112,7 +115,12 @@ public class EntradaController {
 
     }
 
-    @FXML
+    private void openpage(String eNTRADA) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@FXML
     void finalizar(ActionEvent event) {
 
     }

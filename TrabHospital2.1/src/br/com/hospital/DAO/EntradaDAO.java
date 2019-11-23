@@ -55,5 +55,13 @@ public class EntradaDAO {
 						stmt.execute();
 				stmt.execute();
 	}
+	public void removeById(LocalDate dataEntrada) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void update(Entrada en) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
