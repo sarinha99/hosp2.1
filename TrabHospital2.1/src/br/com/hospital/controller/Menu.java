@@ -1,7 +1,10 @@
 package br.com.hospital.controller;
 
 
-	import javafx.event.ActionEvent;
+	import java.io.IOException;
+
+import br.com.hospital.util.Rotas;
+import javafx.event.ActionEvent;
 	import javafx.fxml.FXML;
 	import javafx.scene.control.Button;
 
@@ -35,42 +38,55 @@ package br.com.hospital.controller;
 	    private Button btnGerente;
 
 	    @FXML
-	    void btnAtendimento(ActionEvent event) {
+	    void btnAtendimento(ActionEvent event)throws IOException {
+	    	openpage(Rotas.ATENDIMENTO); 
+
+	    }
+
+	    private void openpage(String aTENDIMENTO) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@FXML
+	    void btnCadastro(ActionEvent event)throws IOException {
+	    	openpage(Rotas.CADASTRO); 
 
 	    }
 
 	    @FXML
-	    void btnCadastro(ActionEvent event) {
+	    void btnEnfermidade(ActionEvent event)throws IOException {
+	    	openpage(Rotas.ENFERMIDADE); 
 
 	    }
 
 	    @FXML
-	    void btnEnfermidade(ActionEvent event) {
+	    void btnEnfermidadePessoal(ActionEvent event) throws IOException {
+	    	openpage(Rotas.ENFERMIDADEPESSOAL);
 
 	    }
 
 	    @FXML
-	    void btnEnfermidadePessoal(ActionEvent event) {
+	    void btnEntrada(ActionEvent event)throws IOException {
+	    	openpage(Rotas.ENTRADA); 
 
 	    }
 
 	    @FXML
-	    void btnEntrada(ActionEvent event) {
+	    void btnGerente(ActionEvent event)throws IOException {
+	    	openpage(Rotas.GERENTE); 
 
 	    }
 
 	    @FXML
-	    void btnGerente(ActionEvent event) {
+	    void btnMedico(ActionEvent event)throws IOException {
+	    	openpage(Rotas.MEDICO); 
 
 	    }
 
 	    @FXML
-	    void btnMedico(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void btnPaciente(ActionEvent event) {
+	    void btnPaciente(ActionEvent event)throws IOException {
+	    	openpage(Rotas.PACIENTE); 
 
 	    }
 
