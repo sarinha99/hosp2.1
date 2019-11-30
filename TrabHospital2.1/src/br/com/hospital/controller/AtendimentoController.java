@@ -30,6 +30,8 @@ public class AtendimentoController extends Main{
 
     @FXML
     private Button btnVoltar;
+    @FXML
+    private TextField txtpeso;
 
     @FXML
     private TextArea txtComentarioEnfermeiro;
@@ -39,6 +41,9 @@ public class AtendimentoController extends Main{
 
     @FXML
     private TableColumn<?, ?> peso;
+
+    @FXML
+    private TextField txtaltura;
 
     @FXML
     private TableColumn<?, ?> altura;
@@ -72,7 +77,7 @@ public class AtendimentoController extends Main{
     @FXML
     private Button btnAtualizar;
     @FXML
-    void btnCancelar(ActionEvent event) {
+    void cancelar(ActionEvent event) {
 
     }
     @FXML
@@ -80,9 +85,9 @@ public class AtendimentoController extends Main{
     	try {
 			AtendimentoDAO a = new AtendimentoDAO();
 			txtComentarioEnfermeiro.setText(a.getComentarioEnfermeiro());
-			peso.setText("" + a.getPeso());
+			txtpeso.setText("" + a.getPeso());
 			txtDoenca.setText("" +a.getDoenca());
-			altura.setText("" + a.getAltura());
+			txtaltura.setText("" + a.getAltura());
 			txtComentarioMedico.setText(a.getComentarioMedico());
 			
 
@@ -141,7 +146,7 @@ public class AtendimentoController extends Main{
 
 
     @FXML
-    void btnFinalizar(ActionEvent event)  {
+    void finalizar(ActionEvent event) {
     	String comentarioEnfermeiro = txtComentarioEnfermeiro.getText();
     	String comentarioMedico = txtComentarioMedico.getText();
     	float pesos=Float.parseFloat(peso.getText());
@@ -172,7 +177,7 @@ public class AtendimentoController extends Main{
 		
 	}
 	@FXML
-	void Voltardash(ActionEvent event) throws IOException {
+    void voltar(ActionEvent event) {
 		openpage(Rotas.MENU);
 
 	}

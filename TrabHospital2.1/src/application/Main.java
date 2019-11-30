@@ -18,7 +18,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage Stage) throws Exception {
 		stageAtual = Stage;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(Rotas.ENFERMEIRO));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Rotas.CADASTRO));
 		
 		
 	try {
